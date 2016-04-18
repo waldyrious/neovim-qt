@@ -31,7 +31,11 @@ protected:
 	const Qt::Key Key_Meta = Qt::Key_Alt;
 #else
 	const Qt::KeyboardModifiers ControlModifier = Qt::ControlModifier;
+# ifdef Q_OS_UNIX
+	const Qt::KeyboardModifiers CmdModifier = Qt::MetaModifier;
+#else
 	const Qt::KeyboardModifiers CmdModifier = (Qt::KeyboardModifiers)0;
+#endif
 	const Qt::KeyboardModifiers MetaModifier  = Qt::MetaModifier;
 	const Qt::Key Key_Control = Qt::Key_Control;
 	const Qt::Key Key_Cmd = (Qt::Key)0;
