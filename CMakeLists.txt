@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(neovim-qt)
 
-INCLUDE(CPack)
-
 if(NOT EXISTS ${NEOVIM_EXEC})
 	set(NEOVIM_EXEC nvim)
 endif()
@@ -79,4 +77,9 @@ if (PYTHONINTERP_FOUND)
 		)
 endif()
 
-
+set(CPACK_PACKAGE_NAME "Neovim-Qt")
+set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/contrib/LICENSE.txt")
+set(CPACK_WIX_UPGRADE_GUID ead3b527-b5fb-47ea-98bb-a6e590e19d7d)
+set(CPACK_WIX_PRODUCT_ICON "${PROJECT_SOURCE_DIR}/third-party/neovim.ico")
+include(GitVersionCpack)
+include(CPack)
