@@ -101,6 +101,8 @@ bool Shell::setGuiFont(const QString& fdesc)
 			pointSize = height;
 		} else if (attr == "b") {
 			weight = QFont::Bold;
+		} else if (attr == "l") {
+			weight = QFont::Light;
 		} else if (attr == "i") {
 			italic = true;
 		}
