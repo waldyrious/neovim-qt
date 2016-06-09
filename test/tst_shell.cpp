@@ -72,7 +72,12 @@ private slots:
 		QVERIFY(SPYWAIT(onAttached));
 		QVERIFY(s->neovimAttached());
 
+		connect(c->neovimObject(), &Neovim::on_vim_get_option, [](QVariant rtp){
+				qDebug() << rtp;
+		});
+
 		checkCommand(c, "GuiFont");
+		c->neovimObject()->vim_get_option("runtimepath");
 		checkCommand(c, "GuiLinespace");
 	}
 
