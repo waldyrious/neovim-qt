@@ -45,6 +45,18 @@ public:
 		doubleWidth = (konsole_wcwidth(c.unicode()) > 1);
 	}
 
+	inline void setLowSurrogate(const QChar& chr) {
+		lowSurrogate = chr;
+	}
+
+	inline QString text() const {
+		if (c.isHighSurrogate() && lowSurrogate.isLowSurrogate()) {
+			return QString(c) + lowSurrogate;
+		} else {
+			return c;
+		}
+	}
+
 	static inline Cell invalid() {
 		Cell c = Cell('X', Qt::white, Qt::red, QColor(), false, false, false, false);
 		c.valid = false;
@@ -52,6 +64,7 @@ public:
 	}
 
 	QChar c;
+	QChar lowSurrogate;
 	QColor foregroundColor, backgroundColor, specialColor;
 	bool bold, italic, underline, undercurl;
 	bool valid;
