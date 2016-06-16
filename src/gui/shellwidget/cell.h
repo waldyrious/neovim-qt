@@ -47,6 +47,7 @@ public:
 
 	inline void setLowSurrogate(const QChar& chr) {
 		lowSurrogate = chr;
+		doubleWidth = (string_width(text()));
 	}
 
 	inline QString text() const {
